@@ -1,0 +1,30 @@
+const Colors = [
+  { id: 1, name: "Red" },
+  { id: 2, name: "Orange" },
+  { id: 3, name: "Yellow" },
+  { id: 4, name: "Green" },
+  { id: 5, name: "Cyan" },
+  { id: 6, name: "Blue" },
+  { id: 7, name: "Magenta" },
+  { id: 8, name: "Purple" },
+  { id: 9, name: "White" },
+  { id: 10, name: "Black" },
+  { id: 11, name: "Gray" },
+  { id: 12, name: "Silver" },
+  { id: 13, name: "Pink" },
+  { id: 14, name: "Maroon" },
+  { id: 15, name: "Brown" },
+  { id: 16, name: "Beige" },
+  { id: 17, name: "Tan" },
+  { id: 18, name: "Peach" },
+  { id: 19, name: "Lime" },
+  { id: 20, name: "Olive" },
+  { id: 21, name: "Turquoise" },
+  { id: 22, name: "Teal" },
+  { id: 23, name: "Navy blue" },
+  { id: 24, name: "Indigo" },
+  { id: 25, name: "Violet" },
+]
+
+
+export default Colors

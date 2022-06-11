@@ -1,0 +1,251 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.app {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+:root {
+  --bs-primary: #35b2b6;
+  --bs-black: #000000;
+  --bs-primary-rgb: rgb(53,178,182);
+}
+
+.font-size-1 {
+  font-size: 1px;
+}
+
+.font-size-2 {
+  font-size: 2px;
+}
+
+.font-size-3 {
+  font-size: 3px;
+}
+
+.font-size-4 {
+  font-size: 4px;
+}
+
+.font-size-5 {
+  font-size: 5px;
+}
+
+.font-size-6 {
+  font-size: 6px;
+}
+
+.font-size-7 {
+  font-size: 7px;
+}
+
+.font-size-8 {
+  font-size: 8px;
+}
+
+.font-size-9 {
+  font-size: 9px;
+}
+
+.font-size-10, *::placeholder {
+  font-size: 10px;
+}
+
+.font-size-11 {
+  font-size: 11px;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-13 {
+  font-size: 13px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-15 {
+  font-size: 15px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-17 {
+  font-size: 17px;
+}
+
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-size-19 {
+  font-size: 19px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+.font-size-21 {
+  font-size: 21px;
+}
+
+.font-size-22 {
+  font-size: 22px;
+}
+
+.font-size-23 {
+  font-size: 23px;
+}
+
+.font-size-24 {
+  font-size: 24px;
+}
+
+.font-size-25 {
+  font-size: 25px;
+}
+
+.font-size-26 {
+  font-size: 26px;
+}
+
+.font-size-27 {
+  font-size: 27px;
+}
+
+.font-size-28 {
+  font-size: 28px;
+}
+
+.font-size-29 {
+  font-size: 29px;
+}
+
+.font-size-30 {
+  font-size: 30px;
+}
+
+* {
+  transition: width 0.2s 0s ease, height 0.2s 0s ease, margin 0.2s 0s ease, border 0.2s 0s ease, background 0.2s 0s ease, transform 0.2s 0s ease, opacity 0.2s 0s ease, box-shadow 0.2s 0s ease, border-radius 0.2s 0s ease, text-shadow 0.2s 0s ease;
+  box-shadow: none !important;
+  outline: none !important;
+}
+inpuyt:focus, inpuyt:active, select:focus, select:active {
+  border: 1px solid var(--bs-primary) !important;
+}
+
+.navbar-toggler {
+  box-shadow: none !important;
+}
+.navbar-toggler:not(.collapsed) {
+  border: 1px solid var(--bs-primary) !important;
+}
+
+.navbar .navbar-brand {
+  margin: 0 !important;
+}
+.navbar .navbar-brand img {
+  max-width: 150px;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.btn-primary:focus {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.btn-primary:disabled, .btn-primary.disabled {
+  background-color: var(--bs-gray-500);
+  border-color: var(--bs-gray-500);
+}
+.btn-primary:hover {
+  background-color: #298b8f;
+  border-color: #298b8f;
+}
+
+.teaser-wrapper {
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+  background-color: var(--bs-gray-500);
+}
+.teaser-wrapper .teaser {
+  background-image: url("/src/assets/teaser.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: var(--bs-primary);
+  border: 1px solid #298b8f;
+  height: 15px;
+  width: 15px;
+}
+
+.form-switch .form-check-input:valid:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23ffffff%27/%3e%3c/svg%3e");
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.form-switch .form-check-input:focus {
+  border-color: var(--bs-primary);
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%2335b2b669%27/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23ffffff%27/%3e%3c/svg%3e");
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #8ddbde;
+}
+
+.was-validated .form-control:valid, .was-validated .form-control .is-valid, .was-validated .form-select:valid, .was-validated .form-select .is-valid {
+  border-color: #8ddbde !important;
+}
+
+.text-primary {
+  color: var(--bs-primary) !important;
+}
+
+.colorDropDown option:after {
+  content: "";
+  background-color: attr(data-color);
+}
+
+[type=checkbox] {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .sticky-up-down {
+    position: sticky;
+    display: table;
+    top: 0;
+  }
+}
+a {
+  cursor: pointer;
+}

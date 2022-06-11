@@ -1,0 +1,159 @@
+@import 'variables';
+
+$size: 30;
+@for $i from 1 through $size {
+  .font-size-#{$i} {
+    font-size: #{$i}px;
+  }
+}
+
+* {
+
+  transition: width 0.2s 0s ease, height 0.2s 0s ease, margin 0.2s 0s ease, border 0.2s 0s ease, background 0.2s 0s ease, transform 0.2s 0s ease, opacity 0.2s 0s ease, box-shadow 0.2s 0s ease, border-radius 0.2s 0s ease, text-shadow 0.2s 0s ease;
+
+  box-shadow: none !important;
+  outline: none !important;
+
+  &::placeholder {
+    @extend .font-size-10;
+  }
+}
+
+inpuyt, select {
+  &:focus, &:active {
+    border: 1px solid $green !important;
+  }
+}
+
+.navbar-toggler {
+  box-shadow: none !important;
+
+  &:not(.collapsed) {
+    border: 1px solid $green !important;
+  }
+}
+
+.navbar {
+  .navbar-brand {
+
+    margin: 0 !important;
+
+    img {
+      max-width: 150px;
+    }
+  }
+}
+
+.btn-primary {
+
+  background-color:$green;
+  border-color: $green;
+
+  &:focus {
+    background-color:$green;
+    border-color: $green;
+  }
+
+  &:disabled, &.disabled {
+    background-color:$gray;
+    border-color: $gray;
+  }
+
+  &:hover {
+    background-color:$darkgreen;
+    border-color: $darkgreen;
+  }
+}
+
+.teaser-wrapper {
+
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+
+  background-color: $gray;
+
+  .teaser {
+    background-image: url("/src/assets/teaser.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+  }
+}
+
+input[type='range']::-webkit-slider-thumb {
+  background-color: $green;
+  border: 1px solid $darkgreen;
+  height: 15px;
+  width: 15px;
+}
+
+
+.form-switch {
+  .form-check-input {
+
+    &:valid {
+      &:checked {
+        background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23ffffff%27/%3e%3c/svg%3e");
+        background-color: $green;
+        border-color: $green;
+      }
+    }
+
+    &:focus {
+      border-color: $green;
+      background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%2335b2b669%27/%3e%3c/svg%3e");
+    }
+    &:checked {
+      background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23ffffff%27/%3e%3c/svg%3e");
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+}
+
+.form-control, .form-select {
+  &:focus {
+    border-color: $lightgreen;
+  }
+}
+
+.was-validated {
+  .form-control, .form-select {
+    &:valid, .is-valid {
+      border-color: $lightgreen !important;
+    }
+  }
+}
+
+.text-primary {
+  @extend .text-primary;
+  color: $green !important;
+}
+
+.colorDropDown {
+  option {
+    &:after {
+    	content: '';
+      background-color: attr(data-color);
+    }
+  }
+}
+
+[type=checkbox] {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+
+  .sticky-up-down {
+    position: sticky;
+    display: table;
+    top: 0;
+  }
+}
+
+
+a {
+  cursor: pointer;
+}

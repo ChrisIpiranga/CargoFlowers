@@ -1,0 +1,14 @@
+:root {
+  --bs-primary: #35b2b6;
+  --bs-black: #000000;
+  --bs-primary-rgb: rgb(53,178,182);
+}
+
+//variables
+$black: var(--bs-black);
+$white: var(--bs-white);
+$gray: var(--bs-gray-500);
+$darkgray: var(--bs-gray-800);
+$green: var(--bs-primary);
+$darkgreen: darken(#35b2b6, 10%);;
+$lightgreen: lighten(#35b2b6, 25%);;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import Filters from "../../components/Filters"
-import Teaser from "../../components/Teaser"
 import Occasions from "../../db/Occasions"
 import Flowers from "../../db/Flowers"
 import Genders from "../../db/Genders"
@@ -66,7 +65,6 @@ function Home() {
 
   return (
     <Container fluid className="p-0 sticky-mark">
-      <Teaser />
       <Filters
         Products={Products}
         Occasions={Occasions}

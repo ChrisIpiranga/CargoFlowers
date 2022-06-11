@@ -119,12 +119,15 @@ function OrderSummary(props) {
                         {product.name}
                       </Col>
                       <Col lg={1}>
-                        <a href="#" onClick={() => props.removeHandler(product.id)}>
+                        <button
+                          className="remove"
+                          onClick={() => props.removeHandler(product.id)}
+                        >
                           <FontAwesomeIcon
                             icon={faRemove}
                             className="d-inline font-size-15 text-danger"
                           />
-                        </a>
+                        </button>
                       </Col>
                       <Col
                         lg={3}

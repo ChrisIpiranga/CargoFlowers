@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import Filters from "../../components/Filters"
-import Occasions from "../../db/Occasions"
-import Flowers from "../../db/Flowers"
-import Genders from "../../db/Genders"
 import ExpressDelivery from "../../db/ExpressDelivery"
-import Colors from "../../db/Colors"
-import Products from "../../db/Products"
-import Ages from "../../db/Ages"
 import OrderSummary from "../../components/OrderSummary"
 import ProductsCatalog from "../../components/ProductsCatalog"
 import { Row, Col } from "react-bootstrap"
@@ -66,13 +60,7 @@ function Home() {
   return (
     <Container fluid className="p-0 sticky-mark">
       <Filters
-        Products={Products}
-        Occasions={Occasions}
-        Flowers={Flowers}
-        Ages={Ages}
-        Genders={Genders}
         ExpressDelivery={ExpressDelivery}
-        Colors={Colors}
         userOptions={userOptions}
         filterHandler={filterHandler}
       />
@@ -80,7 +68,6 @@ function Home() {
         <Row>
           <Col lg={8} className="p-sm-0 pe-lg-4">
             <ProductsCatalog
-              Products={Products}
               userOptions={userOptions}
               setItemsBasket={setItemsBasket}
             />

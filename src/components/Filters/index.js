@@ -1,5 +1,9 @@
 import React, { useState } from "react"
 import Form from "react-bootstrap/Form"
+import Occasions from "../../db/Occasions"
+import Flowers from "../../db/Flowers"
+import Genders from "../../db/Genders"
+import Colors from "../../db/Colors"
 import {
   Container,
   Row,
@@ -124,7 +128,7 @@ function Filter(props) {
                 onChange={(e) => props.filterHandler("Gender", e.target.value)}
               >
                 <option>All</option>
-                {props.Genders.map((item, index) => {
+                {Genders.map((item, index) => {
                   return <option key={index}>{item.name}</option>
                 })}
               </Form.Select>
@@ -143,7 +147,7 @@ function Filter(props) {
                 }
               >
                 <option>All</option>
-                {props.Occasions.map((item, index) => {
+                {Occasions.map((item, index) => {
                   return <option key={index}>{item.name}</option>
                 })}
               </Form.Select>
@@ -160,7 +164,7 @@ function Filter(props) {
                 onChange={(e) => props.filterHandler("Color", e.target.value)}
               >
                 <option>All</option>
-                {props.Colors.map((item, index) => {
+                {Colors.map((item, index) => {
                   return (
                     <option
                       style={{ color: item.name }}
@@ -185,7 +189,7 @@ function Filter(props) {
                 onChange={(e) => props.filterHandler("Flower", e.target.value)}
               >
                 <option>All</option>
-                {props.Flowers.map((item, index) => {
+                {Flowers.map((item, index) => {
                   return <option key={index}>{item.name}</option>
                 })}
               </Form.Select>

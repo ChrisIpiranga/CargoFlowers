@@ -71,7 +71,7 @@ function ProductCatalog(props) {
       </Modal>
 
       <Row>
-        {props.Products.map((product, index) => {
+        {Products.map((product, index) => {
           return (
             <Col
               key={product.id}

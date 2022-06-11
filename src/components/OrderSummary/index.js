@@ -82,7 +82,7 @@ function OrderSummary(props) {
                             types: ["address"],
                             componentRestrictions: { country: "de" },
                           }}
-                          className="form-control form-control-lg"
+                          className="form-control form-control-sm"
                           onPlaceSelected={(place) => {
                             props.filterHandler(
                               "InvoiceAddress",

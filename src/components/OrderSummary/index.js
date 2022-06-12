@@ -94,7 +94,7 @@ function OrderSummary(props) {
                     )
                   })
                 ) : (
-                  <span className="font-size-12 text-muted">Basket Empty</span>
+                  <span className="font-size-12 text-muted">No products added to basket</span>
                 )}
                 <hr />
                 <Row className="mt-2 mt-lg-1 g-0">
@@ -128,7 +128,7 @@ function OrderSummary(props) {
                   </Col>
                 </Row>
                 <hr />
-                <Row className="mt-2 mt-lg-1 g-0">
+                <Row className="mt-2 p-1 mt-lg-1 g-0 bg-light">
                   <Col lg={7} className="font-size-16 text-primary fw-bold">
                     Total:
                   </Col>

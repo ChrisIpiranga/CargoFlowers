@@ -123,7 +123,7 @@ function OrderSummary(props) {
                   </Col>
                   <Col lg={8} className="font-size-14">
                     {props.userOptions.Shipping.Date
-                      ? moment(props.userOptions.Date).format("DD/MM/YYYY")
+                      ? moment(props.userOptions.Shipping.Date).format("DD/MM/YYYY")
                       : "---"}
                   </Col>
                 </Row>

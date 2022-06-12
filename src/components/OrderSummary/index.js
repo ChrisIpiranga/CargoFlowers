@@ -21,8 +21,6 @@ import {
 
 function OrderSummary(props) {
 
-  var locale = navigator.language || navigator.userLanguage
-
   const [showShipping, setShowShipping] = useState(true);
   const [showInvoice, setShowInvoice] = useState(true);
 

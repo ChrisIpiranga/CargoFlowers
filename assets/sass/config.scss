@@ -15,7 +15,8 @@ $size: 30;
   outline: none !important;
 
   &::placeholder {
-    @extend .font-size-10;
+    @extend .font-size-14;
+    color: $lightgray !important;
   }
 }
 
@@ -90,8 +91,8 @@ input[type='range']::-webkit-slider-thumb {
 
 
 .form-switch {
-  .form-check-input {
 
+  .form-check-input {
     &:valid {
       &:checked {
         background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23ffffff%27/%3e%3c/svg%3e");
@@ -161,4 +162,12 @@ a {
 .remove {
   border: none !important;
   background-color: transparent;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.tip {
+  color: $gray;
 }

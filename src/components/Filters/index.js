@@ -31,7 +31,7 @@ function Filter(props) {
     <Container className="p-3 bg-light">
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mt-2">
-          <Col sm="6" md="4" lg="4">
+          <Col md="4" lg="4">
             <Form.Group>
               <Form.Label className="font-size-14 mb-0 mt-2">
                 Delivery Address:
@@ -41,6 +41,7 @@ function Filter(props) {
                 <Autocomplete
                   apiKey="AIzaSyAkKn1ZaV0TKZ-DEnTwS_IEhMszuwPhY5A"
                   required={true}
+                  maxLength={64}
                   options={{
                     types: ["address"],
                     componentRestrictions: { country: "de" },
@@ -49,11 +50,16 @@ function Filter(props) {
                   onPlaceSelected={(place) => {
                     props.filterHandler(
                       "ShippingAddress",
+                      "Address",
                       place.formatted_address
                     )
                   }}
                   onChange={(e) =>
-                    props.filterHandler("ShippingAddress", e.target.value)
+                    props.filterHandler(
+                      "ShippingAddress",
+                      "Address",
+                      e.target.value
+                    )
                   }
                 />
               </InputGroup>
@@ -74,11 +80,13 @@ function Filter(props) {
                       id={shipping.name}
                       type="radio"
                       variant="outline-secondary"
-                      className="font-size-14 w-100"
+                      className="font-size-15 w-100"
                       value={shipping.date}
-                      checked={props.userOptions.Date === shipping.date}
+                      checked={
+                        props.userOptions.Shipping.Date === shipping.date
+                      }
                       onChange={(e) =>
-                        props.filterHandler("Date", e.target.value)
+                        props.filterHandler("Shipping", "Date", e.target.value)
                       }
                     >
                       {shipping.name}
@@ -86,9 +94,6 @@ function Filter(props) {
                   )
                 })}
               </ButtonGroup>
-              <Form.Control.Feedback type="invalid">
-                Please inform the delivery date.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col xs="6" sm="6" md="4" lg="2">
@@ -98,6 +103,12 @@ function Filter(props) {
               </Form.Label>
               <sup className="text-danger">*</sup>
               <ButtonGroup className="w-100">
+                <InputGroup.Text
+                  id="basic-addon1"
+                  className="d-lg-none d-xl-block"
+                >
+                  or
+                </InputGroup.Text>
                 <Form.Control
                   type="date"
                   className="font-size-14 w-100"
@@ -107,9 +118,11 @@ function Filter(props) {
                     )[0].date
                   }
                   id="datepicker"
-                  defaultValue={props.userOptions.Date}
+                  defaultValue={props.userOptions.Shipping.Date}
                   required
-                  onChange={(e) => props.filterHandler("Date", e.target.value)}
+                  onChange={(e) =>
+                    props.filterHandler("Shipping", "Date", e.target.value)
+                  }
                 />
               </ButtonGroup>
               <Form.Control.Feedback type="invalid">
@@ -123,9 +136,11 @@ function Filter(props) {
                 Gender:
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Gender}
+                defaultValue={props.userOptions.Filters.Gender}
                 className="font-size-14"
-                onChange={(e) => props.filterHandler("Gender", e.target.value)}
+                onChange={(e) =>
+                  props.filterHandler("Filters", "Gender", e.target.value)
+                }
               >
                 <option>All</option>
                 {Genders.map((item, index) => {
@@ -140,10 +155,10 @@ function Filter(props) {
                 Occasion:
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Occasion}
+                defaultValue={props.userOptions.Filters.Occasion}
                 className="font-size-14"
                 onChange={(e) =>
-                  props.filterHandler("Occasion", e.target.value)
+                  props.filterHandler("Filters", "Occasion", e.target.value)
                 }
               >
                 <option>All</option>
@@ -159,9 +174,11 @@ function Filter(props) {
                 Favorite Color?
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Color}
+                defaultValue={props.userOptions.Filters.Color}
                 className="font-size-14 colorDropDown"
-                onChange={(e) => props.filterHandler("Color", e.target.value)}
+                onChange={(e) =>
+                  props.filterHandler("Filters", "Color", e.target.value)
+                }
               >
                 <option>All</option>
                 {Colors.map((item, index) => {
@@ -184,9 +201,11 @@ function Filter(props) {
                 Favorite Flower?
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Flower}
+                defaultValue={props.userOptions.Filters.Flower}
                 className="font-size-14"
-                onChange={(e) => props.filterHandler("Flower", e.target.value)}
+                onChange={(e) =>
+                  props.filterHandler("Filters", "Flower", e.target.value)
+                }
               >
                 <option>All</option>
                 {Flowers.map((item, index) => {
@@ -198,12 +217,17 @@ function Filter(props) {
           <Col xs="6" sm="6" md="4" lg="2">
             <Form.Group>
               <Form.Label className="font-size-14 mb-0 mt-2">
-                Age: {props.userOptions.Age > 0 ? props.userOptions.Age : "All"}
+                Age:{" "}
+                {props.userOptions.Filters.Age > 0
+                  ? props.userOptions.Filters.Age
+                  : "All"}
               </Form.Label>
               <Form.Range
                 className="font-size-14 mt-2"
-                onChange={(e) => props.filterHandler("Age", e.target.value)}
-                value={props.userOptions.Age}
+                onChange={(e) =>
+                  props.filterHandler("Filters", "Age", e.target.value)
+                }
+                value={props.userOptions.Filters.Age}
               />
             </Form.Group>
           </Col>
@@ -214,11 +238,13 @@ function Filter(props) {
               </Form.Label>
               <Form.Check
                 className="font-size-14 mt-2"
-                defaultValue={props.userOptions.Set}
-                checked={props.userOptions.Set}
+                defaultValue={props.userOptions.Filters.Set}
+                checked={props.userOptions.Filters.Set}
                 type="switch"
-                id="custom-switch"
-                onChange={(e) => props.filterHandler("Set", e.target.checked)}
+                id="include-set"
+                onChange={(e) =>
+                  props.filterHandler("Filters", "Set", e.target.checked)
+                }
                 label="Include Set Options?"
               />
             </Form.Group>

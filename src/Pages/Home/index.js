@@ -19,33 +19,59 @@ function Home() {
   }
   useEffect(() => {
     const basketList = localStorage.getItem("@cargoFlowerBasket")
-    setItemsBasket(JSON.parse(basketList) || [])
-  }, [])
+    setItemsBasket(JSON.parse(basketList) || []);
+  }, [setItemsBasket])
 
   const [userOptions, setUserOptions] = useState({
-    Product: 0,
-    Occasion: 0,
-    Flower: 0,
-    ShippingAddress: "",
-    InvoiceAddress: "",
-    Date: "",
-    Age: 0,
-    Set: true,
-    Color: "",
-    Card: true,
-    Unnamed: false,
+    Filters: {
+      Occasion: 0,
+      Flower: 0,
+      Age: 0,
+      Set: true,
+      Color: "",
+    },
+    ShippingAddress: {
+      Address: "",
+      FirstName: "",
+      LastName: "",
+      Email: "",
+      Phone: "",
+    },
+    InvoiceAddress: {
+      Address: "",
+      FirstName: "",
+      LastName: "",
+      Email: "",
+      Phone: "",
+    },
+    Shipping: {
+      Date: "",
+    },
+    Order: {
+      Card: false,
+      Message: "",
+      Sender: "",
+      Anonymously: false,
+    },
   })
   useEffect(() => {
-    //console.log(userOptions.DateOption)
+    console.log(userOptions);
   }, [userOptions])
 
-  function filterHandler(key, value) {
-    setUserOptions((prevState) => ({ ...prevState, [key]: value }))
+  function filterHandler(parent, key, value) {
+
+    if (parent === "Order" && key === "Anonymously" && value === true) {
+      filterHandler("Order", "Sender", "");
+    }
+    setUserOptions((prevState) => ({
+      ...prevState,
+      [parent]: { ...prevState[parent], [key]: value },
+    }))
   }
 
   function returnShippingSet() {
     let shippingCurrent = ExpressDelivery.filter(
-      (shipping) => shipping.date === userOptions.Date
+      (shipping) => shipping.date === userOptions.Shipping.Date
     )
 
     if (!shippingCurrent.length) {

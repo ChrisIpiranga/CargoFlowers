@@ -6,6 +6,8 @@ import {
   faRemove,
   faAngleDoubleUp,
   faAngleDoubleDown,
+  faCheck,
+  faCircle,
   faPencil
 } from "@fortawesome/free-solid-svg-icons"
 import {
@@ -18,11 +20,12 @@ import {
   Col,
   InputGroup,
 } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 function OrderSummary(props) {
 
-  const [showShipping, setShowShipping] = useState(true);
-  const [showInvoice, setShowInvoice] = useState(true);
+  const [showShipping, setShowShipping] = useState(false);
+  const [showInvoice, setShowInvoice] = useState(false)
 
   function subtotal() {
     let sumItem = props.itemsBasket.reduce(function (prev, current) {
@@ -43,7 +46,7 @@ function OrderSummary(props) {
     return +(subtotal() + shipping).toFixed(12);
   }
 
-  const basketReady = total() > 0;
+  const basketReady = subtotal() > 0;
 
   const shippingAddressReady = Object.values(
     props.userOptions.ShippingAddress
@@ -134,14 +137,14 @@ function OrderSummary(props) {
                     lg={5}
                     className="font-size-16 text-end text-danger fw-bold"
                   >
-                    € {total()}
+                    {total() > 0 ? `€ ${total()}` : `---`}
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-        <Row className="my-1">
+        <Row className="my-2">
           <Col>
             <Form.Check
               className="font-size-14 mt-2 text-muted text-nowrap"
@@ -266,14 +269,16 @@ function OrderSummary(props) {
         <Row>
           <Col>
             <Card bg="primary" text="dark" className="d-flex">
-              <Card.Header className="font-size-15">
+              <Card.Header
+                className="font-size-15 cursor-pointer"
+                onClick={() => setShowShipping(!showShipping)}
+              >
                 <Row>
                   <Col>Shipping Details</Col>
                   <Col className="text-end">
                     <FontAwesomeIcon
                       icon={showShipping ? faAngleDoubleUp : faAngleDoubleDown}
-                      onClick={() => setShowShipping(!showShipping)}
-                      className="d-inline font-size-15 text-danger cursor-pointer"
+                      className="d-inline font-size-15 text-danger"
                     />
                   </Col>
                 </Row>
@@ -405,14 +410,16 @@ function OrderSummary(props) {
         <Row className="mt-3">
           <Col>
             <Card bg="primary" text="dark" className="d-flex">
-              <Card.Header className="font-size-15">
+              <Card.Header
+                className="font-size-15 cursor-pointer"
+                onClick={() => setShowInvoice(!showInvoice)}
+              >
                 <Row>
                   <Col>Invoice Details</Col>
                   <Col className="text-end">
                     <FontAwesomeIcon
                       icon={showInvoice ? faAngleDoubleUp : faAngleDoubleDown}
-                      onClick={() => setShowInvoice(!showInvoice)}
-                      className="d-inline font-size-15 text-danger cursor-pointer"
+                      className="d-inline font-size-15 text-danger"
                     />
                   </Col>
                 </Row>
@@ -558,7 +565,53 @@ function OrderSummary(props) {
             </Card>
           </Col>
         </Row>
-        <Row className="mt-3">
+        <Row className="mt-3 font-size-10">
+          <Col className="tip text-center">
+            Basket
+            <FontAwesomeIcon
+              icon={basketReady ? faCheck : faRemove}
+              className={
+                basketReady
+                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+              }
+            />
+          </Col>
+          <Col className="tip text-center">
+            Delivery
+            <FontAwesomeIcon
+              icon={shippingReady ? faCheck : faRemove}
+              className={
+                shippingReady
+                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+              }
+            />
+          </Col>
+          <Col className="tip text-center">
+            Shipping
+            <FontAwesomeIcon
+              icon={shippingAddressReady ? faCheck : faRemove}
+              className={
+                shippingAddressReady
+                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+              }
+            />
+          </Col>
+          <Col className="tip text-center">
+            Invoice
+            <FontAwesomeIcon
+              icon={InvoiceAddressReady ? faCheck : faRemove}
+              className={
+                InvoiceAddressReady
+                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+              }
+            />
+          </Col>
+        </Row>
+        <Row className="">
           <Col>
             <Button
               variant="primary"
@@ -575,6 +628,14 @@ function OrderSummary(props) {
             >
               Buy Now
             </Button>
+            <label className="font-size-10 mt-2">
+              By clicking <strong>"Buy Now"</strong> you agree to our terms of
+              service and that you have read our{" "}
+              <Link to="/privacy-policy" className="text-primary">
+                privacy policy
+              </Link>
+              .
+            </label>
           </Col>
         </Row>
       </Container>

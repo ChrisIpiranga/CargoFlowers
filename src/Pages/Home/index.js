@@ -29,6 +29,7 @@ function Home() {
       Age: 0,
       Set: true,
       Color: "",
+      Gender: ""
     },
     ShippingAddress: {
       Address: "",

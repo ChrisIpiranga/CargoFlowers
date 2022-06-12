@@ -564,15 +564,15 @@ function OrderSummary(props) {
             </Card>
           </Col>
         </Row>
-        <Row className="mt-3 font-size-10">
+        <Row className="mt-3 font-size-11">
           <Col className="tip text-center">
             Basket
             <FontAwesomeIcon
               icon={basketReady ? faCheck : faRemove}
               className={
                 basketReady
-                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
-                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+                  ? "d-inline font-size-10 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-10 cursor-pointer ms-1 text-danger"
               }
             />
           </Col>
@@ -582,8 +582,8 @@ function OrderSummary(props) {
               icon={shippingReady ? faCheck : faRemove}
               className={
                 shippingReady
-                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
-                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+                  ? "d-inline font-size-10 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-10 cursor-pointer ms-1 text-danger"
               }
             />
           </Col>
@@ -593,8 +593,8 @@ function OrderSummary(props) {
               icon={shippingAddressReady ? faCheck : faRemove}
               className={
                 shippingAddressReady
-                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
-                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+                  ? "d-inline font-size-10 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-10 cursor-pointer ms-1 text-danger"
               }
             />
           </Col>
@@ -604,8 +604,8 @@ function OrderSummary(props) {
               icon={InvoiceAddressReady ? faCheck : faRemove}
               className={
                 InvoiceAddressReady
-                  ? "d-inline font-size-8 cursor-pointer ms-1 text-primary"
-                  : "d-inline font-size-8 cursor-pointer ms-1 text-danger"
+                  ? "d-inline font-size-10 cursor-pointer ms-1 text-primary"
+                  : "d-inline font-size-10 cursor-pointer ms-1 text-danger"
               }
             />
           </Col>

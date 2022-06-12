@@ -7,7 +7,6 @@ import {
   faAngleDoubleUp,
   faAngleDoubleDown,
   faCheck,
-  faCircle,
   faPencil
 } from "@fortawesome/free-solid-svg-icons"
 import {

@@ -46,7 +46,7 @@ function Filter({ Delivery, userOptions, filterHandler }) {
                     types: ["address"],
                     componentRestrictions: { country: "de" },
                   }}
-                  className="form-control"
+                  className="form-control font-size-14"
                   onPlaceSelected={(place) => {
                     filterHandler(
                       "ShippingAddress",
@@ -75,7 +75,7 @@ function Filter({ Delivery, userOptions, filterHandler }) {
                         id={shipping.name}
                         type="radio"
                         variant="outline-secondary"
-                        className="font-size-15 w-100"
+                        className="font-size-14 w-100"
                         value={shipping.date}
                         checked={userOptions.Shipping.Date === shipping.date}
                         onChange={(e) =>
@@ -99,7 +99,7 @@ function Filter({ Delivery, userOptions, filterHandler }) {
               <ButtonGroup className="w-100">
                 <InputGroup.Text
                   id="basic-addon1"
-                  className="d-lg-none d-xl-block"
+                  className="d-lg-none d-xl-block font-size-14"
                 >
                   or
                 </InputGroup.Text>
@@ -250,7 +250,7 @@ function Filter({ Delivery, userOptions, filterHandler }) {
             <Button
               variant="primary"
               onClick={(e) => handleSubmit(e)}
-              className="d-block ms-auto w-100 mt-2"
+              className="d-block ms-auto w-100 mt-2 font-size-14"
             >
               Filter Products
             </Button>

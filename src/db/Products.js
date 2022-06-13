@@ -119,6 +119,78 @@ const Products = [
     description: "Product 20 Description",
     price: 55.99,
   },
+  {
+    id: 21,
+    name: "Product 21",
+    description: "Product 21 Description",
+    price: 11.99,
+  },
+  {
+    id: 22,
+    name: "Product 22",
+    description: "Product 22 Description",
+    price: 22.99,
+  },
+  {
+    id: 23,
+    name: "Product 23",
+    description: "Product 23 Description",
+    price: 33.99,
+  },
+  {
+    id: 24,
+    name: "Product 24",
+    description: "Product 24 Description",
+    price: 44.99,
+  },
+  {
+    id: 25,
+    name: "Product 25",
+    description: "Product 25 Description",
+    price: 55.99,
+  },
+  {
+    id: 26,
+    name: "Product 26",
+    description: "Product 26 Description",
+    price: 16.99,
+  },
+  {
+    id: 27,
+    name: "Product 27",
+    description: "Product 27 Description",
+    price: 27.99,
+  },
+  {
+    id: 28,
+    name: "Product 28",
+    description: "Product 28 Description",
+    price: 38.99,
+  },
+  {
+    id: 29,
+    name: "Product 29",
+    description: "Product 29 Description",
+    price: 49.99,
+  },
+  {
+    id: 30,
+    name: "Product 30",
+    description: "Product 30 Description",
+    price: 53.99,
+  },
+  {
+    id: 31,
+    name: "Product 31",
+    description: "Product 31 Description",
+    price: 31.99,
+  },
+  {
+    id: 32,
+    name: "Product 32",
+    description: "Product 32 Description",
+    price: 32.99,
+  },
 ]
 
 export default Products

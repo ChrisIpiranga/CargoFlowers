@@ -2,8 +2,7 @@ import React, { useState } from "react"
 import { Container, Button, Modal, Card, Row, Col } from "react-bootstrap"
 import Products from "../../db/Products"
 
-function ProductCatalog(props) {
-
+function ProductCatalog({setItemsBasket }) {
   const [addShow, setAddShow] = useState(false)
   const handleAddClose = () => setAddShow(false)
   const handleAddShow = () => setAddShow(true)
@@ -19,19 +18,18 @@ function ProductCatalog(props) {
     const itemAlreadyExists = basketList.some((item) => item.id === product.id)
 
     if (itemAlreadyExists) {
-      handleExistsShow();
-      return;
+      handleExistsShow()
+      return
     } else {
-      basketList.push(product);
-      localStorage.setItem("@cargoFlowerBasket", JSON.stringify(basketList));
-      props.setItemsBasket(basketList);
-      handleAddShow();
+      basketList.push(product)
+      localStorage.setItem("@cargoFlowerBasket", JSON.stringify(basketList))
+      setItemsBasket(basketList)
+      handleAddShow()
     }
   }
 
   return (
     <Container className="p-1 p-sm-0 mt-sm-2 mt-lg-4">
-
       <Modal
         show={addShow}
         centered

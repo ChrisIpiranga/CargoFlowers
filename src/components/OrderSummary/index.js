@@ -21,13 +21,13 @@ import {
 } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-function OrderSummary(props) {
+function OrderSummary({userOptions, returnShippingSet, filterHandler, removeHandler, itemsBasket}) {
 
   const [showShipping, setShowShipping] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false)
 
   function subtotal() {
-    let sumItem = props.itemsBasket.reduce(function (prev, current) {
+    let sumItem = itemsBasket.reduce(function (prev, current) {
       return prev + +current.price
     }, 0)
 
@@ -38,8 +38,8 @@ function OrderSummary(props) {
 
     let shipping = 0.0
 
-    if (props.userOptions.Shipping.Date) {
-      shipping = props.returnShippingSet().price
+    if (userOptions.Shipping.Date) {
+      shipping = returnShippingSet().price
     }
 
     return +(subtotal() + shipping).toFixed(12);
@@ -47,17 +47,17 @@ function OrderSummary(props) {
 
   const basketReady = subtotal() > 0;
 
-  const shippingAddressReady = Object.values(
-    props.userOptions.ShippingAddress
-  ).every((value) => Boolean(value))
+  const shippingAddressReady = Object.values(userOptions.ShippingAddress).every(
+    (value) => Boolean(value)
+  )
 
-  const InvoiceAddressReady = Object.values(
-    props.userOptions.InvoiceAddress
-  ).every((value) => Boolean(value))
+  const InvoiceAddressReady = Object.values(userOptions.InvoiceAddress).every(
+    (value) => Boolean(value)
+  )
 
-  const shippingReady = Object.values(
-    props.userOptions.Shipping
-  ).every((value) => Boolean(value))
+  const shippingReady = Object.values(userOptions.Shipping).every((value) =>
+    Boolean(value)
+  )
 
   return (
     <div className="sticky-up-down d-none d-lg-flex">
@@ -67,8 +67,8 @@ function OrderSummary(props) {
             <Card bg="primary" text="dark" className="d-flex">
               <Card.Header className="font-size-15">Order Summary</Card.Header>
               <Card.Body>
-                {props.itemsBasket.length ? (
-                  props.itemsBasket.map((product, index) => {
+                {itemsBasket.length ? (
+                  itemsBasket.map((product, index) => {
                     return (
                       <Row key={index} className="mt-2 mt-lg-1 g-0">
                         <Col lg={8} className="font-size-14 text-mute">
@@ -80,7 +80,7 @@ function OrderSummary(props) {
                         <Col lg={1} className="align-self-center">
                           <FontAwesomeIcon
                             icon={faRemove}
-                            onClick={() => props.removeHandler(product.id)}
+                            onClick={() => removeHandler(product.id)}
                             className="d-inline font-size-14 text-danger cursor-pointer"
                           />
                         </Col>
@@ -94,7 +94,9 @@ function OrderSummary(props) {
                     )
                   })
                 ) : (
-                  <span className="font-size-12 text-muted">No products added to basket</span>
+                  <span className="font-size-12 text-muted">
+                    No products added to basket
+                  </span>
                 )}
                 <hr />
                 <Row className="mt-2 mt-lg-1 g-0">
@@ -102,9 +104,9 @@ function OrderSummary(props) {
                     Delivery Option:
                   </Col>
                   <Col lg={5} className="font-size-14">
-                    {props.userOptions.Shipping.Date
-                      ? `${props.returnShippingSet().name} (${
-                          props.returnShippingSet().type
+                    {userOptions.Shipping.Date
+                      ? `${returnShippingSet().name} (${
+                          returnShippingSet().type
                         })`
                       : "---"}
                   </Col>
@@ -112,8 +114,8 @@ function OrderSummary(props) {
                     lg={3}
                     className="font-size-14 text-end text-danger fw-bold"
                   >
-                    {props.userOptions.Shipping.Date
-                      ? `€ ${props.returnShippingSet().price}`
+                    {userOptions.Shipping.Date
+                      ? `€ ${returnShippingSet().price}`
                       : "---"}
                   </Col>
                 </Row>
@@ -122,8 +124,8 @@ function OrderSummary(props) {
                     Delivery Date:
                   </Col>
                   <Col lg={8} className="font-size-14">
-                    {props.userOptions.Shipping.Date
-                      ? moment(props.userOptions.Shipping.Date).format("DD/MM/YYYY")
+                    {userOptions.Shipping.Date
+                      ? moment(userOptions.Shipping.Date).format("DD/MM/YYYY")
                       : "---"}
                   </Col>
                 </Row>
@@ -147,21 +149,19 @@ function OrderSummary(props) {
           <Col>
             <Form.Check
               className="font-size-14 mt-2 text-muted text-nowrap"
-              defaultValue={props.userOptions.Order.MessageCard}
-              checked={props.userOptions.Order.MessageCard}
+              defaultValue={userOptions.Order.MessageCard}
+              checked={userOptions.Order.MessageCard}
               inline
               type="switch"
               aria-controls="message-wrapper"
-              aria-expanded={props.userOptions.Order.MessageCard}
+              aria-expanded={userOptions.Order.MessageCard}
               id="include-card"
               label={
                 <div className="w-100">
                   Add <span className="text-primary">Message Card</span>?
                 </div>
               }
-              onChange={(e) =>
-                props.filterHandler("Order", "Card", e.target.checked)
-              }
+              onChange={(e) => filterHandler("Order", "Card", e.target.checked)}
             />
           </Col>
           <Col className="align-self-center text-end">
@@ -171,7 +171,7 @@ function OrderSummary(props) {
             />
           </Col>
         </Row>
-        <Collapse in={props.userOptions.Order.Card}>
+        <Collapse in={userOptions.Order.Card}>
           <Row className="mb-3">
             <Col>
               <Card bg="primary" text="dark" className="d-flex">
@@ -191,14 +191,10 @@ function OrderSummary(props) {
                             rows={2}
                             type="text"
                             placeholder="Message"
-                            value={props.userOptions.Order.Message}
+                            value={userOptions.Order.Message}
                             className="form-control-sm w-100"
                             onChange={(e) =>
-                              props.filterHandler(
-                                "Order",
-                                "Message",
-                                e.target.value
-                              )
+                              filterHandler("Order", "Message", e.target.value)
                             }
                           />
                         </Form.Group>
@@ -217,19 +213,15 @@ function OrderSummary(props) {
                         <Form.Control
                           type="text"
                           placeholder={
-                            props.userOptions.Order.Anonymously
+                            userOptions.Order.Anonymously
                               ? "No sender"
                               : "Sender"
                           }
-                          disabled={props.userOptions.Order.Anonymously}
-                          value={props.userOptions.Order.Sender}
+                          disabled={userOptions.Order.Anonymously}
+                          value={userOptions.Order.Sender}
                           className="form-control-sm w-100"
                           onChange={(e) =>
-                            props.filterHandler(
-                              "Order",
-                              "Sender",
-                              e.target.value
-                            )
+                            filterHandler("Order", "Sender", e.target.value)
                           }
                         />
                       </Form.Group>
@@ -243,15 +235,15 @@ function OrderSummary(props) {
                     <Col lg={8} className="font-size-14">
                       <Form.Check
                         className="font-size-12 text-secondary mt-2"
-                        defaultValue={props.userOptions.Order.Anonymously}
-                        checked={props.userOptions.Order.Anonymously}
+                        defaultValue={userOptions.Order.Anonymously}
+                        checked={userOptions.Order.Anonymously}
                         type="switch"
                         aria-controls="message-wrapper"
-                        aria-expanded={props.userOptions.Order.Anonymously}
+                        aria-expanded={userOptions.Order.Anonymously}
                         id="send-anonymously"
                         label="Anonymously?"
                         onChange={(e) =>
-                          props.filterHandler(
+                          filterHandler(
                             "Order",
                             "Anonymously",
                             e.target.checked
@@ -298,12 +290,10 @@ function OrderSummary(props) {
                             <Form.Control
                               type="text"
                               placeholder="First Name"
-                              value={
-                                props.userOptions.ShippingAddress.FirstName
-                              }
+                              value={userOptions.ShippingAddress.FirstName}
                               className="form-control-sm"
                               onChange={(e) =>
-                                props.filterHandler(
+                                filterHandler(
                                   "ShippingAddress",
                                   "FirstName",
                                   e.target.value
@@ -317,10 +307,10 @@ function OrderSummary(props) {
                             <Form.Control
                               type="text"
                               placeholder="Last Name"
-                              value={props.userOptions.ShippingAddress.LastName}
+                              value={userOptions.ShippingAddress.LastName}
                               className="form-control-sm"
                               onChange={(e) =>
-                                props.filterHandler(
+                                filterHandler(
                                   "ShippingAddress",
                                   "LastName",
                                   e.target.value
@@ -337,8 +327,8 @@ function OrderSummary(props) {
                       Delivery Address:
                     </Col>
                     <Col lg={8} className="font-size-14">
-                      {props.userOptions.ShippingAddress.Address ? (
-                        props.userOptions.ShippingAddress.Address
+                      {userOptions.ShippingAddress.Address ? (
+                        userOptions.ShippingAddress.Address
                       ) : (
                         <span className="font-size-12 tip">
                           use the{" "}
@@ -363,10 +353,10 @@ function OrderSummary(props) {
                         <Form.Control
                           type="email"
                           placeholder="Email Address"
-                          value={props.userOptions.ShippingAddress.Email}
+                          value={userOptions.ShippingAddress.Email}
                           className="form-control-sm"
                           onChange={(e) =>
-                            props.filterHandler(
+                            filterHandler(
                               "ShippingAddress",
                               "Email",
                               e.target.value
@@ -388,10 +378,10 @@ function OrderSummary(props) {
                         <Form.Control
                           type="phone"
                           placeholder="Phone"
-                          value={props.userOptions.ShippingAddress.Phone}
+                          value={userOptions.ShippingAddress.Phone}
                           className="form-control-sm"
                           onChange={(e) =>
-                            props.filterHandler(
+                            filterHandler(
                               "ShippingAddress",
                               "Phone",
                               e.target.value
@@ -439,10 +429,10 @@ function OrderSummary(props) {
                             <Form.Control
                               type="text"
                               placeholder="First Name"
-                              value={props.userOptions.InvoiceAddress.FirstName}
+                              value={userOptions.InvoiceAddress.FirstName}
                               className="form-control-sm"
                               onChange={(e) =>
-                                props.filterHandler(
+                                filterHandler(
                                   "InvoiceAddress",
                                   "FirstName",
                                   e.target.value
@@ -456,10 +446,10 @@ function OrderSummary(props) {
                             <Form.Control
                               type="text"
                               placeholder="Last Name"
-                              value={props.userOptions.InvoiceAddress.LastName}
+                              value={userOptions.InvoiceAddress.LastName}
                               className="form-control-sm"
                               onChange={(e) =>
-                                props.filterHandler(
+                                filterHandler(
                                   "InvoiceAddress",
                                   "LastName",
                                   e.target.value
@@ -491,14 +481,14 @@ function OrderSummary(props) {
                             }}
                             className="form-control form-control-sm"
                             onPlaceSelected={(place) => {
-                              props.filterHandler(
+                              filterHandler(
                                 "InvoiceAddress",
                                 "Address",
                                 place.formatted_address
                               )
                             }}
                             onChange={(e) =>
-                              props.filterHandler(
+                              filterHandler(
                                 "InvoiceAddress",
                                 "Address",
                                 e.target.value
@@ -521,10 +511,10 @@ function OrderSummary(props) {
                         <Form.Control
                           type="email"
                           placeholder="Email Address"
-                          value={props.userOptions.InvoiceAddress.Email}
+                          value={userOptions.InvoiceAddress.Email}
                           className="form-control-sm"
                           onChange={(e) =>
-                            props.filterHandler(
+                            filterHandler(
                               "InvoiceAddress",
                               "Email",
                               e.target.value
@@ -546,10 +536,10 @@ function OrderSummary(props) {
                         <Form.Control
                           type="phone"
                           placeholder="Phone"
-                          value={props.userOptions.InvoiceAddress.Phone}
+                          value={userOptions.InvoiceAddress.Phone}
                           className="form-control-sm"
                           onChange={(e) =>
-                            props.filterHandler(
+                            filterHandler(
                               "InvoiceAddress",
                               "Phone",
                               e.target.value
@@ -622,7 +612,6 @@ function OrderSummary(props) {
                   shippingReady
                 )
               }
-              onClick={(e) => props.handleSubmit(e)}
               className="d-block ms-auto w-100 mt-2"
             >
               Buy Now

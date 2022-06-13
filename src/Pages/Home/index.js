@@ -95,7 +95,6 @@ function Home() {
         <Row>
           <Col lg={8} className="p-sm-0 pe-lg-4">
             <ProductsCatalog
-              userOptions={userOptions}
               setItemsBasket={setItemsBasket}
             />
           </Col>
@@ -103,7 +102,6 @@ function Home() {
             <OrderSummary
               userOptions={userOptions}
               returnShippingSet={returnShippingSet}
-              ExpressDelivery={ExpressDelivery}
               filterHandler={filterHandler}
               removeHandler={removeHandler}
               itemsBasket={itemsBasket}

@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap"
 import Autocomplete from "react-google-autocomplete"
 
-function Filter(props) {
+function Filter({ ExpressDelivery, userOptions, filterHandler }) {
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -48,18 +48,14 @@ function Filter(props) {
                   }}
                   className="form-control"
                   onPlaceSelected={(place) => {
-                    props.filterHandler(
+                    filterHandler(
                       "ShippingAddress",
                       "Address",
                       place.formatted_address
                     )
                   }}
                   onChange={(e) =>
-                    props.filterHandler(
-                      "ShippingAddress",
-                      "Address",
-                      e.target.value
-                    )
+                    filterHandler("ShippingAddress", "Address", e.target.value)
                   }
                 />
               </InputGroup>
@@ -71,7 +67,7 @@ function Filter(props) {
                 Delivery (Express):
               </Form.Label>
               <ButtonGroup className="w-100">
-                {props.ExpressDelivery.filter(
+                {ExpressDelivery.filter(
                   (shipping) => shipping.name !== "Normal"
                 ).map((shipping, index) => {
                   return (
@@ -82,11 +78,9 @@ function Filter(props) {
                       variant="outline-secondary"
                       className="font-size-15 w-100"
                       value={shipping.date}
-                      checked={
-                        props.userOptions.Shipping.Date === shipping.date
-                      }
+                      checked={userOptions.Shipping.Date === shipping.date}
                       onChange={(e) =>
-                        props.filterHandler("Shipping", "Date", e.target.value)
+                        filterHandler("Shipping", "Date", e.target.value)
                       }
                     >
                       {shipping.name}
@@ -113,15 +107,15 @@ function Filter(props) {
                   type="date"
                   className="font-size-14 w-100"
                   min={
-                    props.ExpressDelivery.filter(
+                    ExpressDelivery.filter(
                       (shipping) => shipping.name === "Normal"
                     )[0].date
                   }
                   id="datepicker"
-                  defaultValue={props.userOptions.Shipping.Date}
+                  defaultValue={userOptions.Shipping.Date}
                   required
                   onChange={(e) =>
-                    props.filterHandler("Shipping", "Date", e.target.value)
+                    filterHandler("Shipping", "Date", e.target.value)
                   }
                 />
               </ButtonGroup>
@@ -136,10 +130,10 @@ function Filter(props) {
                 Gender:
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Filters.Gender}
+                defaultValue={userOptions.Filters.Gender}
                 className="font-size-14"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Gender", e.target.value)
+                  filterHandler("Filters", "Gender", e.target.value)
                 }
               >
                 <option>All</option>
@@ -155,10 +149,10 @@ function Filter(props) {
                 Occasion:
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Filters.Occasion}
+                defaultValue={userOptions.Filters.Occasion}
                 className="font-size-14"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Occasion", e.target.value)
+                  filterHandler("Filters", "Occasion", e.target.value)
                 }
               >
                 <option>All</option>
@@ -174,10 +168,10 @@ function Filter(props) {
                 Favorite Color?
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Filters.Color}
+                defaultValue={userOptions.Filters.Color}
                 className="font-size-14 colorDropDown"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Color", e.target.value)
+                  filterHandler("Filters", "Color", e.target.value)
                 }
               >
                 <option>All</option>
@@ -201,10 +195,10 @@ function Filter(props) {
                 Favorite Flower?
               </Form.Label>
               <Form.Select
-                defaultValue={props.userOptions.Filters.Flower}
+                defaultValue={userOptions.Filters.Flower}
                 className="font-size-14"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Flower", e.target.value)
+                  filterHandler("Filters", "Flower", e.target.value)
                 }
               >
                 <option>All</option>
@@ -218,16 +212,14 @@ function Filter(props) {
             <Form.Group>
               <Form.Label className="font-size-14 mb-0 mt-2">
                 Age:{" "}
-                {props.userOptions.Filters.Age > 0
-                  ? props.userOptions.Filters.Age
-                  : "All"}
+                {userOptions.Filters.Age > 0 ? userOptions.Filters.Age : "All"}
               </Form.Label>
               <Form.Range
                 className="font-size-14 mt-2"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Age", e.target.value)
+                  filterHandler("Filters", "Age", e.target.value)
                 }
-                value={props.userOptions.Filters.Age}
+                value={userOptions.Filters.Age}
               />
             </Form.Group>
           </Col>
@@ -238,12 +230,12 @@ function Filter(props) {
               </Form.Label>
               <Form.Check
                 className="font-size-14 mt-2"
-                defaultValue={props.userOptions.Filters.Set}
-                checked={props.userOptions.Filters.Set}
+                defaultValue={userOptions.Filters.Set}
+                checked={userOptions.Filters.Set}
                 type="switch"
                 id="include-set"
                 onChange={(e) =>
-                  props.filterHandler("Filters", "Set", e.target.checked)
+                  filterHandler("Filters", "Set", e.target.checked)
                 }
                 label="Include Set Options?"
               />

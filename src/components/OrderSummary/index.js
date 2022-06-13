@@ -149,12 +149,12 @@ function OrderSummary({userOptions, returnShippingSet, filterHandler, removeHand
           <Col>
             <Form.Check
               className="font-size-14 mt-2 text-muted text-nowrap"
-              defaultValue={userOptions.Order.MessageCard}
-              checked={userOptions.Order.MessageCard}
+              defaultValue={userOptions.Order.Card}
+              checked={userOptions.Order.Card}
               inline
               type="switch"
               aria-controls="message-wrapper"
-              aria-expanded={userOptions.Order.MessageCard}
+              aria-expanded={userOptions.Order.Card}
               id="include-card"
               label={
                 <div className="w-100">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import Filters from "../../components/Filters"
-import ExpressDelivery from "../../db/ExpressDelivery"
+import Delivery from "../../db/Delivery"
 import OrderSummary from "../../components/OrderSummary"
 import ProductsCatalog from "../../components/ProductsCatalog"
 import { Row, Col } from "react-bootstrap"
@@ -71,12 +71,12 @@ function Home() {
   }
 
   function returnShippingSet() {
-    let shippingCurrent = ExpressDelivery.filter(
+    let shippingCurrent = Delivery.filter(
       (shipping) => shipping.date === userOptions.Shipping.Date
     )
 
     if (!shippingCurrent.length) {
-      shippingCurrent = ExpressDelivery.filter(
+      shippingCurrent = Delivery.filter(
         (shipping) => shipping.type === "Standard"
       )
     }
@@ -87,16 +87,14 @@ function Home() {
   return (
     <Container fluid className="p-0 sticky-mark">
       <Filters
-        ExpressDelivery={ExpressDelivery}
+        Delivery={Delivery}
         userOptions={userOptions}
         filterHandler={filterHandler}
       />
       <Container>
         <Row>
           <Col lg={8} className="p-sm-0 pe-lg-4">
-            <ProductsCatalog
-              setItemsBasket={setItemsBasket}
-            />
+            <ProductsCatalog setItemsBasket={setItemsBasket} />
           </Col>
           <Col lg={4} className="px-0">
             <OrderSummary

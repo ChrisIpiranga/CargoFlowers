@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap"
 import Autocomplete from "react-google-autocomplete"
 
-function Filter({ ExpressDelivery, userOptions, filterHandler }) {
+function Filter({ Delivery, userOptions, filterHandler }) {
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -67,26 +67,26 @@ function Filter({ ExpressDelivery, userOptions, filterHandler }) {
                 Delivery (Express):
               </Form.Label>
               <ButtonGroup className="w-100">
-                {ExpressDelivery.filter(
-                  (shipping) => shipping.name !== "Normal"
-                ).map((shipping, index) => {
-                  return (
-                    <ToggleButton
-                      key={shipping.id}
-                      id={shipping.name}
-                      type="radio"
-                      variant="outline-secondary"
-                      className="font-size-15 w-100"
-                      value={shipping.date}
-                      checked={userOptions.Shipping.Date === shipping.date}
-                      onChange={(e) =>
-                        filterHandler("Shipping", "Date", e.target.value)
-                      }
-                    >
-                      {shipping.name}
-                    </ToggleButton>
-                  )
-                })}
+                {Delivery.filter((shipping) => shipping.name !== "Normal").map(
+                  (shipping, index) => {
+                    return (
+                      <ToggleButton
+                        key={shipping.id}
+                        id={shipping.name}
+                        type="radio"
+                        variant="outline-secondary"
+                        className="font-size-15 w-100"
+                        value={shipping.date}
+                        checked={userOptions.Shipping.Date === shipping.date}
+                        onChange={(e) =>
+                          filterHandler("Shipping", "Date", e.target.value)
+                        }
+                      >
+                        {shipping.name}
+                      </ToggleButton>
+                    )
+                  }
+                )}
               </ButtonGroup>
             </Form.Group>
           </Col>
@@ -107,9 +107,8 @@ function Filter({ ExpressDelivery, userOptions, filterHandler }) {
                   type="date"
                   className="font-size-14 w-100"
                   min={
-                    ExpressDelivery.filter(
-                      (shipping) => shipping.name === "Normal"
-                    )[0].date
+                    Delivery.filter((shipping) => shipping.name === "Normal")[0]
+                      .date
                   }
                   id="datepicker"
                   defaultValue={userOptions.Shipping.Date}

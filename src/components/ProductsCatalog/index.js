@@ -29,7 +29,7 @@ function ProductCatalog({setItemsBasket }) {
   }
 
   return (
-    <Container className="p-1 p-sm-0 mt-sm-2 mt-lg-4">
+    <Container className="p-1 px-sm-3 px-lg-0 mt-sm-2 mt-lg-4">
       <Modal
         show={addShow}
         centered
